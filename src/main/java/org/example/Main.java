@@ -15,22 +15,16 @@ public class Main {
         System.out.println("count: " + hashes.size());
     }
 
-    public static long primeHash(long p1, long p2, long p3, long n) {
-        return (p2 * n + p3) % p1 + ((n / p1) + 1) * p1;
-    }
-
     public static long hash1(long n) {
-        final long p1 = 9181;
-        final long p2 = 39667;
-        final long p3 = 47059;
-        return primeHash(p1, p2, p3, n);
+        return primeHash(9181, 39667, 47059, 0, n);
     }
 
     public static long hash2(long n) {
-        final long p1 = 10007;
-        final long p2 = 19991;
-        final long p3 = 11113;
-        return primeHash(p1, p2, p3, n);
+        return primeHash(10007, 19991, 11113, 1, n);
+    }
+
+    public static long primeHash(long p1, long p2, long p3, long shift, long n) {
+        return (p2 * n + p3) % p1 + ((n / p1) + shift) * p1;
     }
 
     public static long greyCode(long n) {
